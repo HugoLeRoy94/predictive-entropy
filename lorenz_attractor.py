@@ -28,3 +28,9 @@ def simulate_lorenz(t_span, initial_conditions, dt):
     t = np.arange(t_span[0], t_span[1], dt)
     xyz = sol.sol(t).T
     return t, xyz
+def sample_gaussian_ic(N, center=(0., 1., 1.), sigma=(1., 1., 1.), rng=None):
+    """3D normal around 'center' with per-axis std 'sigma'."""
+    rng = rng or np.random.default_rng()
+    center = np.asarray(center, float)
+    sigma = np.asarray(sigma, float)
+    return center + rng.normal(size=(N, 3)) * sigma
